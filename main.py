@@ -9,28 +9,16 @@ def welcome_message(welcome=input("Welcome to the Mortgage Calculator! Do you wi
         print("That's okay, maybe later.")
 
 
-welcome_message()
-
-# stores user input to variables to be used later to calculate payments
-
-
-def user_info():
+# takes user input to store values, then calculates the monthly payments
+def payment_calculation():
     principle = input("What is the cost of the home?: ")
     intrest_rate = input("What is the intrest rate?: ")
     loan_term = input("How many years is the loan?: ")
-    print(principle, loan_term, intrest_rate)
-    # print(principle)
-    # print(intrest_rate)
-    # print(loan_term)
+
+    payment = (float(principle) * (float(intrest_rate) / 100)) / 1 - \
+        (1 / (1 + float(intrest_rate)) ** int(loan_term))
+    print(f"Your monthly principle payment is ${round(payment, 3)}")
 
 
-# user_info()
-# trying to call user_info and use the variables in the formula
-def payment_calculation():
-    user_info()
-    payment = (principle * intrest_rate) / 1 - \
-        (1 / (1 + intrest_rate) ** loan_term)
-    return f"Your monthly payment is {payment}."
-
-
-print(payment_calculation())
+welcome_message()
+payment_calculation()
